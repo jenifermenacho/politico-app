@@ -12,8 +12,10 @@ async function fetchEmendas() {
   const ranking = JSON.parse(fs.readFileSync(assetPath, 'utf8'));
   console.log(`Iniciando integração de Emendas Parlamentares Reais via Portal da Transparência...`);
   
+  const apiKey = process.env.PORTAL_TRANSPARENCIA_API_KEY;
+  if (!apiKey) { console.error('PORTAL_TRANSPARENCIA_API_KEY nao definida'); return; }
   const options = {
-    headers: { 'chave-api-dados': '9426f3d6dffe1d6718afa8f3d771036a' }
+    headers: { 'chave-api-dados': apiKey }
   };
   
   // Vamos puxar as primeiras 20 páginas (300 emendas) para cruzar com nossa base

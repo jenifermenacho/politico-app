@@ -6,7 +6,7 @@ async function debugEmendasAutor() {
   
   const options = {
     headers: {
-      'chave-api-dados': '9426f3d6dffe1d6718afa8f3d771036a'
+      'chave-api-dados': process.env.PORTAL_TRANSPARENCIA_API_KEY || ''
     }
   };
   

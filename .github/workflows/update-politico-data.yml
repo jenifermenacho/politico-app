@@ -26,9 +26,13 @@ jobs:
 
       - name: Buscar dados dos Deputados
         run: node fetch-data.js
+        env:
+          PORTAL_TRANSPARENCIA_API_KEY: ${{ secrets.PORTAL_TRANSPARENCIA_API_KEY }}
 
       - name: Buscar dados dos Senadores
         run: node fetch-senadores.js
+        env:
+          PORTAL_TRANSPARENCIA_API_KEY: ${{ secrets.PORTAL_TRANSPARENCIA_API_KEY }}
 
       - name: Commit e Push dos dados atualizados
         run: |
