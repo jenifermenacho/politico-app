@@ -1,0 +1,6 @@
+[build]
+  command = "bash scripts/build.sh"
+  publish = "build/web"
+
+[build.environment]
+  FLUTTER_VERSION = "3.24.0"

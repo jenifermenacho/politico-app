@@ -1,0 +1,35 @@
+name: Atualizar Dados dos Deputados
+
+on:
+  schedule:
+    - cron: '0 5 * * *' # Roda todos os dias às 05:00 UTC
+  workflow_dispatch: # Permite rodar manualmente
+
+permissions:
+  contents: write # Necessário para fazer push no repositório
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js v18
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Executar script para buscar dados
+        run: |
+          node fetch-data.js
+          node fetch-senadores.js
+
+      - name: Commit e Push dos dados atualizados
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add assets/ranking.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "chore: atualiza ranking.json com dados recentes"
+          git push
