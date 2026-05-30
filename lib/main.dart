@@ -1464,7 +1464,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
       String jsonString;
       try {
         const url =
-            'https://raw.githubusercontent.com/jenifermenacho/quiz-laboratiristas/main/flutter/politico_app/assets/ranking.json';
+            'https://raw.githubusercontent.com/jenifermenacho/politico-app/master/assets/ranking.json';
         final response = await http
             .get(Uri.parse(url))
             .timeout(const Duration(seconds: 15));
